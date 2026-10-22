@@ -1,6 +1,6 @@
 # smart-plant-watering-system
 
-An automatic plant watering system that turns on a water pump when the soil is dry.
+An automatic plant watering system that turns on a water pump when the soil is dry and water pump turn off when the soil is wet.
 
 ## Components
 - Arduino UNO
