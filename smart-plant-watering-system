@@ -1,0 +1,48 @@
+int sensor = A0;
+int pump = 7;
+int led = 8;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(pump, OUTPUT);
+  pinMode(led, OUTPUT);
+}
+
+void loop() {
+
+  int sum = 0;
+
+  for (int i = 0; i < 10; i++) {
+    sum += analogRead(sensor);
+  }
+
+  int average = sum / 10;
+
+  Serial.print("Current Moisture : ");
+  Serial.println(analogRead(sensor));
+
+  Serial.print("Average Moisture : ");
+  Serial.println(average);
+
+  if (average < 300) {
+    Serial.println("AI Analysis : Soil moisture is low");
+    Serial.println("Prediction : Water Needed");
+    Serial.println("Pump Status : ON");
+    Serial.println("LED Status : ON");
+
+    digitalWrite(pump, HIGH);
+    digitalWrite(led, HIGH);
+  }
+  else {
+    Serial.println("AI Analysis : Soil moisture is sufficient");
+    Serial.println("Prediction : Soil Healthy");
+    Serial.println("Pump Status : OFF");
+    Serial.println("LED Status : OFF");
+
+    digitalWrite(pump, LOW);
+    digitalWrite(led, LOW);
+  }
+
+  Serial.println();
+  delay(1000);
+}
